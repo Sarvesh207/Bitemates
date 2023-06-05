@@ -34,7 +34,7 @@ const Cart = () => {
               Karnataka 560001, India
             </p>
             <button className="text-green-500 border-2 p-1 border-green-400 my-6">
-              Add new{" "}
+              Add new
             </button>
           </div>
         </div>

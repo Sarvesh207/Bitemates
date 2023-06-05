@@ -9,12 +9,13 @@ const cartSlice = createSlice({
     addItem: (state, action) => {
       //   state.items.push(action.payload);
       const itemInCart = state.items.find(
-        (item) => item?.card?.info.id === action.payload.id
+        (item) => item?.card?.info.id === action.payload.card.info.id
       );
       if (itemInCart) {
         itemInCart.card.info.inStock++;
       } else {
         state.items.push(action.payload);
+       
       }
     },
     removeItem: (state, action) => {

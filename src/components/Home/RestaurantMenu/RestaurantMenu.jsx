@@ -12,19 +12,26 @@ import { TbBike } from "react-icons/tb";
 import { IMG_CDN_URL } from "../../../constant.js";
 
 import FormatPrice from "../../../Helper/FormatPrice.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // import MenuCards from "../RestaurantMenu/MenuCards/MenuCards.jsx";
 
 const RestaurantMenu = () => {
+  const notify = () => {
+    alert("added in cart");
+    toast("Added to cart");
+  };
   const params = useParams();
   const id = params.id;
-  console.log(id);
+  // console.log(id);
   const restaurant = useRestaurant(id);
   const restaurantsMenu = useRestaurantMenu(id);
-  console.log(restaurantsMenu);
+  // console.log(restaurantsMenu);
 
   const dispatch = useDispatch();
 
   const addFoodItem = (item) => {
+    // console.log(name)
     dispatch(addItem(item));
   };
 
@@ -94,31 +101,60 @@ const RestaurantMenu = () => {
                 src={IMG_CDN_URL + item?.card?.info?.imageId}
                 alt=""
               />
-              
-              <p className="text-black text-sm my-3 font-bold">{item?.card?.info?.name}</p>
-              <p className=" text-gray-600 text-xs">{item?.card?.info?.category}</p>
-              <div className="flex justify-between items-center mt-5">
-                  <h3>
-                    <span className="text-gray-600 text-sm mr-2">
-                      <del>
-                      
-                        <FormatPrice price={isNaN(item?.card?.info?.price * 2) ? 500*50 : item?.card?.info?.price * 2} />
-                      </del>
-                    </span>
-                    <FormatPrice price={isNaN(item?.card?.info?.price * 2) ? 500*20 : item?.card?.info?.price * 2} />
-                  </h3>
 
-                  <button
-                    className="px-3 py-1 transition ease-in duration-200 rounded-xl hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none"
-                    onClick={() => addFoodItem(item)}
-                  >
-                    Add
-                  </button>
-                </div>
+              <p className="text-black text-sm my-3 font-bold">
+                {item?.card?.info?.name}
+              </p>
+              <p className=" text-gray-600 text-xs">
+                {item?.card?.info?.category}
+              </p>
+              <div className="flex justify-between items-center mt-5">
+                <h3>
+                  <span className="text-gray-600 text-sm mr-2">
+                    <del>
+                      <FormatPrice
+                        price={
+                          isNaN(item?.card?.info?.price * 2)
+                            ? 500 * 50
+                            : item?.card?.info?.price * 2
+                        }
+                      />
+                    </del>
+                  </span>
+                  <FormatPrice
+                    price={
+                      isNaN(item?.card?.info?.price * 2)
+                        ? 500 * 20
+                        : (item?.card?.info?.price * 2) / 2
+                    }
+                  />
+                </h3>
+
+                <button
+                  className="px-3 py-1 transition ease-in duration-200 rounded-xl hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none"
+                  onClick={() => {
+                    addFoodItem(item), notify;
+                  }}
+                >
+                  Add
+                </button>
+              </div>
             </div>
           );
         })}
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

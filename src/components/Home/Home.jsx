@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { filterData } from "../../utils/helper.js";
 import useOnline from "../../utils/useOnline.js";
 import Carousal from "../Carousal.jsx";
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import React from "react";
-
+import Filter from "../Filter.jsx";
 
 const Home = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -45,13 +45,10 @@ const Home = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json.data.cards[0]);
-    console.log(json?.data?.cards[2]?.data?.data?.cards);
 
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setCarousal(json?.data?.cards[0]?.data?.data.cards);
-    
   }
 
   const isOnline = useOnline();
@@ -68,7 +65,6 @@ const Home = () => {
     <>
       <div className="searchContainer h-25  p-5 my-20 bg-sky-950 my-5 flex justify-center items-center ">
         <input
-       
           type="text"
           className="search-input text-center w-6/12"
           placeholder="Search"
@@ -86,17 +82,21 @@ const Home = () => {
         </button>
       </div>
 
+      <Carousel
+        responsive={responsive}
+        transitionDuration={500}
+        infinite={true}
+        className="bg-sky-950 p-14 "
+      >
+        {carousal.map((item) => {
+          return <Carousal {...item.data} />;
+        })}
+      </Carousel>
+
+      <Filter/>
       
-        <Carousel responsive={responsive}   transitionDuration={500}  infinite={true}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-3 justify-items-center  lg:px-20 md:px10  px-15 ">
      
-          className="bg-sky-950 p-14 "
-        >
-          {carousal.map((item) => {
-            return <Carousal {...item.data} />;
-          })}
-        </Carousel>
-      
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-3 justify-items-center  lg:px-20 md:px10  mt-20 px-15 ">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link

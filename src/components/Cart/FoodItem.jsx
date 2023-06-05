@@ -25,6 +25,7 @@ const FoodItem = () => {
   };
 
   const handleIncrementQuantity = (item) => {
+    console.log(item.card.info.inStock)
     dispatch(incrementQuantity(item.card.info.id));
   };
 
@@ -35,7 +36,7 @@ const FoodItem = () => {
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cartItems.forEach((item) => {
-      totalPrice += item?.card?.info?.price || 0;
+      totalPrice += (item?.card?.info?.price)*(item?.card?.info?.inStock) || 0;
     });
     return totalPrice;
   };
@@ -49,7 +50,7 @@ const FoodItem = () => {
         <div className="flow-root">
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {cartItems.map((item) => (
-              <li key={item?.card?.info.id} className="flex py-6">
+              <li key={item.card.info.id} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img
                     src={IMG_CDN_URL + item?.card?.info.imageId}
@@ -62,7 +63,7 @@ const FoodItem = () => {
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <h3>{item?.card?.info.name}</h3>
                       <p className="ml-4">
-                        <FormatPrice price={isNaN(item?.card?.info?.price * 2) ? 500*20 : item?.card?.info?.price * 2} />
+                        <FormatPrice price={isNaN(item?.card?.info?.price * 2) ? 500*20 : (item?.card?.info?.price * 2)/2} />
                       </p>
                     </div>
                   </div>
