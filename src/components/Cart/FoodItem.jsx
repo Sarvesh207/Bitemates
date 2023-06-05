@@ -25,7 +25,7 @@ const FoodItem = () => {
   };
 
   const handleIncrementQuantity = (item) => {
-    console.log(item.card.info.inStock)
+    console.log(item.card.info.inStock);
     dispatch(incrementQuantity(item.card.info.id));
   };
 
@@ -36,7 +36,7 @@ const FoodItem = () => {
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cartItems.forEach((item) => {
-      totalPrice += (item?.card?.info?.price)*(item?.card?.info?.inStock) || 0;
+      totalPrice += item?.card?.info?.price * item?.card?.info?.inStock || 0;
     });
     return totalPrice;
   };
@@ -63,7 +63,13 @@ const FoodItem = () => {
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <h3>{item?.card?.info.name}</h3>
                       <p className="ml-4">
-                        <FormatPrice price={isNaN(item?.card?.info?.price * 2) ? 500*20 : (item?.card?.info?.price * 2)/2} />
+                        <FormatPrice
+                          price={
+                            isNaN(item?.card?.info?.price * 2)
+                              ? 500 * 20
+                              : (item?.card?.info?.price * 2) / 2
+                          }
+                        />
                       </p>
                     </div>
                   </div>
@@ -102,6 +108,11 @@ const FoodItem = () => {
           </ul>
         </div>
       </div>
+      <div className="flex items-center justify-center mt-7">
+        <button className="flex items-center justify-center h-10 rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 " onClick={() =>handleClearCart() }>
+          Clear Cart
+        </button>
+      </div>
       <div className="border-t border-gray-200 w-full m-auto mt-10 sm:px-6">
         <div className="flex justify-between m-full text-base font-medium sm:w-full sm:m-auto text-gray-900 flex-col">
           <p className="mt-4">Bill Details</p>
@@ -125,12 +136,12 @@ const FoodItem = () => {
         </div>
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>
-            or  
+            or
             <button
               type="button"
               className="font-medium text-indigo-600 hover:text-indigo-500 px-3"
             >
-                Continue Shopping
+              Continue Shopping
               <span aria-hidden="true"> &rarr;</span>
             </button>
           </p>

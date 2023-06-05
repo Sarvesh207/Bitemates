@@ -8,7 +8,7 @@ import Carousal from "../Carousal.jsx";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import React from "react";
-import Filter from "../Filter.jsx";
+
 
 const Home = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -93,7 +93,7 @@ const Home = () => {
         })}
       </Carousel>
 
-      <Filter/>
+ 
       
       <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-3 justify-items-center  lg:px-20 md:px10  px-15 ">
      

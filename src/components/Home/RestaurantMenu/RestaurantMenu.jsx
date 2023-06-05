@@ -39,13 +39,14 @@ const RestaurantMenu = () => {
     <Shimmer />
   ) : (
     <div className="menu flex justify-center items-center  flex-col bg-white py-10">
-      <p className="text-gray-600 -ml-80 cursor-pointer my-10">
+      <p className="text-gray-600 cursor-pointer my-10  ml-5">
         <Link className="cursor-pointer" to="/">
           Home
         </Link>
         / {restaurant.name}
       </p>
-      <div>
+
+      <div className="px-3">
         <h2 className="text-sky-950 font-bold text-2xl">{restaurant.name}</h2>
 
         <p className="mt-5 text-gray-600">{restaurant.cuisines.join(", ")}</p>
@@ -95,7 +96,7 @@ const RestaurantMenu = () => {
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8 px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 bg-white">
         {restaurantsMenu.map((item) => {
           return (
-            <div className="hover:shadow-2xl p-3 cursor-pointer transition duration-300 ease-in-out hover:scale-100">
+            <div className="hover:shadow-2xl p-3 cursor-pointer transition duration-300 ease-in-out hover:scale-100  " key={item?.card?.info?.id}>
               <img
                 className="rounded-lg "
                 src={IMG_CDN_URL + item?.card?.info?.imageId}
