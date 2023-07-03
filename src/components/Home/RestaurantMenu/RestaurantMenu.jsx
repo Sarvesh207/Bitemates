@@ -94,13 +94,13 @@ const RestaurantMenu = () => {
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8 px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 bg-white">
-        {restaurantsMenu.map((item) => {
+        {restaurantsMenu && restaurantsMenu.map((item) => {
           return (
             <div className="hover:shadow-2xl p-3 cursor-pointer transition duration-300 ease-in-out hover:scale-100  " key={item?.card?.info?.id}>
               <img
                 className="rounded-lg "
                 src={IMG_CDN_URL + item?.card?.info?.imageId}
-                alt=""
+                alt="Image"
               />
 
               <p className="text-black text-sm my-3 font-bold">

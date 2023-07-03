@@ -6,11 +6,12 @@ import { addItem } from "../../../../utils/cartSlice";
 import FormatPrice from "../../../../Helper/FormatPrice.js";
 import Shimmer from "../../../Shimmer.jsx";
 
+
 const MenuCards = () => {
   const params = useParams();
   const id = params.id;
   console.log(id);
-  const restaurantsMenu = useRestaurantMenu(id);
+  const restaurantsMenu = useRestaurantMenu(id) ?? [];
 
   const dispatch = useDispatch();
 
@@ -19,6 +20,7 @@ const MenuCards = () => {
   };
 
   
+
   return !restaurantsMenu ? (
     <Shimmer />
   ) : (
@@ -26,9 +28,8 @@ const MenuCards = () => {
       <h1 className="text-gray-600 font-bold text-2xl text-center ">Menu</h1>
 
       <div className="bg-white">
-   
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8 px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20">
-          {
+          {restaurantsMenu &&
             restaurantsMenu.map((item) => (
               <div className="hover:shadow-2xl p-3 cursor-pointer transition duration-300 ease-in-out hover:scale-100">
                 <img
@@ -46,7 +47,6 @@ const MenuCards = () => {
                   <h3>
                     <span className="text-gray-600 text-sm mr-2">
                       <del>
-                      
                         <FormatPrice price={+item?.card?.info?.price * 2} />
                       </del>
                     </span>

@@ -9,6 +9,7 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "../../utils/cartSlice.js";
+import { Link } from "react-router-dom";
 
 const FoodItem = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -109,7 +110,10 @@ const FoodItem = () => {
         </div>
       </div>
       <div className="flex items-center justify-center mt-7">
-        <button className="flex items-center justify-center h-10 rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 " onClick={() =>handleClearCart() }>
+        <button
+          className="flex items-center justify-center h-10 rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 "
+          onClick={() => handleClearCart()}
+        >
           Clear Cart
         </button>
       </div>
@@ -137,13 +141,15 @@ const FoodItem = () => {
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>
             or
-            <button
-              type="button"
-              className="font-medium text-indigo-600 hover:text-indigo-500 px-3"
-            >
-              Continue Shopping
-              <span aria-hidden="true"> &rarr;</span>
-            </button>
+            <Link to="/">
+              <button
+                type="button"
+                className="font-medium text-indigo-600 hover:text-indigo-500 px-3"
+              >
+                Continue Shopping
+                <span aria-hidden="true"> &rarr;</span>
+              </button>
+            </Link>
           </p>
         </div>
       </div>

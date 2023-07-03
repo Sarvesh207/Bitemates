@@ -1,13 +1,13 @@
 import React from "react";
-import { IMG_CDN_URL } from "../constant.js";
 
-const Carousal = ({ creativeId }) => {
+
+const Carousal = ({ image }) => {
   return (
-    <div className="flex justify-between mx-5 ">
+    <div className="  w-60">
       <img
-        className="gap-x-3 h-full object-scale-down "
-        src={IMG_CDN_URL + creativeId}
-        alt=""
+        className=" "
+        src={image}
+        alt="Img"
       />
     </div>
   );

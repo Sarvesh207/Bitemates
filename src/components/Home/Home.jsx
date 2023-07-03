@@ -8,13 +8,19 @@ import Carousal from "../Carousal.jsx";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import React from "react";
-
+import { bannerList } from "../../constant.js";
+import FilterNavbar from "./RestaurantMenu/FilterNavbar.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setRestarunts } from "../../utils/filterSlice.js";
 
 const Home = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [carousal, setCarousal] = useState([]);
+  const dispatch = useDispatch();
+  const restrauntsList = useSelector((store) => store.filter.restraunts);
+  console.log(restrauntsList.length);
 
   useEffect(() => {
     getRestaurrants();
@@ -42,11 +48,14 @@ const Home = () => {
 
   async function getRestaurrants() {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&page_type=DESKTOP_WEB_LISTING"
+      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
 
+    const restraunts = json?.data?.cards[2]?.data?.data?.cards;
+    console.log(restraunts);
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    dispatch(setRestarunts(restraunts));
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setCarousal(json?.data?.cards[0]?.data?.data.cards);
   }
@@ -54,7 +63,11 @@ const Home = () => {
   const isOnline = useOnline();
 
   if (!isOnline) {
-    return <h1>🔴 Offline please check your internet connection</h1>;
+    return (
+      <div className="flex justify-center items-center ">
+        <h1>🔴 Offline please check your internet connection</h1>
+      </div>
+    );
   }
 
   if (!allRestaurants) return null;
@@ -63,7 +76,7 @@ const Home = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="searchContainer h-25  p-5 my-20 bg-sky-950 my-5 flex justify-center items-center ">
+      {/* <div className="searchContainer h-25  p-5 my-20 bg-sky-950 my-5 flex justify-center items-center ">
         <input
           type="text"
           className="search-input text-center w-6/12"
@@ -80,24 +93,23 @@ const Home = () => {
         >
           Search
         </button>
-      </div>
+      </div> */}
 
       <Carousel
         responsive={responsive}
         transitionDuration={500}
         infinite={true}
-        className="bg-sky-950 p-14 "
+        className="bg-slate-50 px-14 py-7  "
       >
-        {carousal.map((item) => {
-          return <Carousal {...item.data} />;
+        {bannerList.map((image, i) => {
+          return <Carousal image={image} key={i} />;
         })}
       </Carousel>
 
- 
-      
+      <FilterNavbar />
+      <hr className="mx-40" />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-3 justify-items-center  lg:px-20 md:px10  px-15 ">
-     
-        {filteredRestaurants.map((restaurant) => {
+        {restrauntsList.map((restaurant) => {
           return (
             <Link
               to={"/restaurant/" + restaurant.data.id}

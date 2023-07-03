@@ -22,7 +22,7 @@ export default function Navbar() {
   console.log(cartItems.length);
 
   return (
-    <Disclosure as="nav" className="bg-sky-950">
+    <Disclosure as="nav" className="bg-sky-950 sticky z-50 top-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
