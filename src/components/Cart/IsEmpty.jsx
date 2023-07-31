@@ -8,8 +8,9 @@ const IsEmpty = () => {
       
 
       <img
-        className="w-full h-full"
-        src="https://media.istockphoto.com/id/841884438/vector/empty-shopping-bag-icon-cute-disappointed-shopping-bag-flat-thin-line-design-isolated-vector.jpg?s=612x612&w=0&k=20&c=q4-NaJiL4BG8kIEIsU5N0Wgy_9zv6_dJutV1qfs1_x4="
+      
+        className="w-full mt-4 mb-4 h-full"
+        src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0"
         alt="emptycard_image"
       />
 
