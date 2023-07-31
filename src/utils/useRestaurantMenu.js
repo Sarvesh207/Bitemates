@@ -4,7 +4,7 @@ const useRestaurantMenu = (id) =>  {
     const [restaurantsMenu, setRestaurantsMenu] = useState([])
     useEffect(() => {
         getRestaurantInfo();
-      }, []);
+      }, [id]);
     
       async function getRestaurantInfo() {
         const data = await fetch(

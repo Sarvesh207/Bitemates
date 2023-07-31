@@ -41,7 +41,7 @@ const Search = () => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className=" w-96  px-4 pl-6 py-2 border-transparent text-bold"
+            className=" w-96  px-4 pl-6 py-2 border-transparent text-bold outline-none"
             placeholder="Search for restaurants and food"
           />
 

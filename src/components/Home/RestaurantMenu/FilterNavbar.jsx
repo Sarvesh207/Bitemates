@@ -11,6 +11,7 @@ import {
 const FilterNavbar = () => {
   const dispatch = useDispatch();
   const restrauntsList = useSelector((store) => store.filter.restraunts);
+  
 
   const handlleSortDelivery = () => {
     dispatch(setDeliveryTimeFilter(restrauntsList));

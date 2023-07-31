@@ -15,29 +15,28 @@ const FoodItem = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   const dispatch = useDispatch();
-  console.log(cartItems);
 
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
   const handleRemoveItem = (item) => {
-    dispatch(removeItem(item.card.info.id));
+    dispatch(removeItem(item?.id));
   };
 
   const handleIncrementQuantity = (item) => {
-    console.log(item.card.info.inStock);
-    dispatch(incrementQuantity(item.card.info.id));
+    console.log(item?.inStock);
+    dispatch(incrementQuantity(item?.id));
   };
 
   const handleDecrementQuantity = (item) => {
-    dispatch(decrementQuantity(item.card.info.id));
+    dispatch(decrementQuantity(item?.id));
   };
 
   const calculateTotalPrice = () => {
     let totalPrice = 0;
     cartItems.forEach((item) => {
-      totalPrice += item?.card?.info?.price * item?.card?.info?.inStock || 0;
+      totalPrice += item?.price * item?.inStock || 0;
     });
     return totalPrice;
   };
@@ -51,10 +50,10 @@ const FoodItem = () => {
         <div className="flow-root">
           <ul role="list" className="-my-6 divide-y divide-gray-200">
             {cartItems.map((item) => (
-              <li key={item.card.info.id} className="flex py-6">
+              <li key={item.id} className="flex py-6">
                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                   <img
-                    src={IMG_CDN_URL + item?.card?.info.imageId}
+                    src={IMG_CDN_URL + item?.imageId}
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
@@ -62,13 +61,13 @@ const FoodItem = () => {
                 <div className="ml-4 flex flex-1 flex-col">
                   <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
-                      <h3>{item?.card?.info.name}</h3>
+                      <h3>{item?.name}</h3>
                       <p className="ml-4">
                         <FormatPrice
                           price={
-                            isNaN(item?.card?.info?.price * 2)
+                            isNaN(item?.price * 2)
                               ? 500 * 20
-                              : (item?.card?.info?.price * 2) / 2
+                              : (item?.price * 2) / 2
                           }
                         />
                       </p>
@@ -82,9 +81,7 @@ const FoodItem = () => {
                       >
                         -
                       </button>
-                      <p className="text-green-500">
-                        {item?.card?.info?.inStock}
-                      </p>
+                      <p className="text-green-500">{item?.inStock}</p>
                       <button
                         className="ml-2 "
                         onClick={() => handleIncrementQuantity(item)}

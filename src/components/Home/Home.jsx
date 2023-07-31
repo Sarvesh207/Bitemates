@@ -15,12 +15,9 @@ import { setRestarunts } from "../../utils/filterSlice.js";
 
 const Home = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [carousal, setCarousal] = useState([]);
+
   const dispatch = useDispatch();
   const restrauntsList = useSelector((store) => store.filter.restraunts);
-  console.log(restrauntsList.length);
 
   useEffect(() => {
     getRestaurrants();
@@ -52,12 +49,14 @@ const Home = () => {
     );
     const json = await data.json();
 
-    const restraunts = json?.data?.cards[2]?.data?.data?.cards;
-    console.log(restraunts);
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    const restraunts =
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+
+    setAllRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
     dispatch(setRestarunts(restraunts));
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setCarousal(json?.data?.cards[0]?.data?.data.cards);
   }
 
   const isOnline = useOnline();
@@ -109,16 +108,17 @@ const Home = () => {
       <FilterNavbar />
       <hr className="mx-40" />
       <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-3 justify-items-center  lg:px-20 md:px10  px-15 ">
-        {restrauntsList.map((restaurant) => {
-          return (
-            <Link
-              to={"/restaurant/" + restaurant.data.id}
-              key={restaurant.data.id}
-            >
-              <RestruantCard {...restaurant.data} />
-            </Link>
-          );
-        })}
+        {restrauntsList &&
+          restrauntsList.map((restaurant) => {
+            return (
+              <Link
+                to={"/restaurant/" + restaurant.info.id}
+                key={restaurant.info.id}
+              >
+                <RestruantCard {...restaurant.info} />
+              </Link>
+            );
+          })}
       </div>
     </>
   );

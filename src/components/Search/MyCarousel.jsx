@@ -27,7 +27,7 @@ const MyCarousel = () => {
  
 
   return (
-    <div className="flex overflow-hidden mx-20 z-10">
+    <div className="flex overflow-hidden mx-20 z-10 ">
       <Carousel
         responsive={responsive}
         transitionDuration={500}

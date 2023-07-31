@@ -8,9 +8,9 @@ const RestruantCard = ({
   cuisines,
   cloudinaryImageId,
   lastMileTravelString,
-  costForTwoString,
+  costForTwo,
   avgRating,
-  slaString,
+  sla,
 }) => {
   return (
     <div className="w-[300px]  p-5 m-10   bg-white group-hover:opacity-100 lg:h-80 hover:shadow-2xl hover:lg:h-80 transition duration-300 ease-in-out hover:scale-110 hover:border-gray-950">
@@ -24,8 +24,10 @@ const RestruantCard = ({
         >
           {name}
         </h2>
-        <p className="text-xs text-gray-600 font-arial my-2 ">{cuisines.join(", ")}</p>
-        
+        <p className="text-xs text-gray-600 font-arial my-2 ">
+          {cuisines.join(", ")}
+        </p>
+
         <div className="flex justify-between my-3">
           <div className="flex justify-evenly mx-1 bg-green-600 text-white p-1 ">
             <span className="text-xs">{avgRating}</span>
@@ -34,8 +36,8 @@ const RestruantCard = ({
             </span>
           </div>
 
-          <span className="text-xs text-gray-600">{slaString}</span>
-          <span className="text-xs mx-1 text-gray-600">{costForTwoString}</span>
+          <span className="text-xs text-gray-600">{sla?.slaString}</span>
+          <span className="text-xs mx-1 text-gray-600">{costForTwo}</span>
         </div>
       </div>
     </div>
