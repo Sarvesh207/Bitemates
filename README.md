@@ -34,7 +34,7 @@ To run the project locally, follow these steps:
 - Navigate to the project directory.
 - Install the dependencies using npm install.
 - Start the development server using npm run dev.
-- The app will be running at http://localhost:3000.
+- The app will be running at http://localhost:5173.
 - Live Link https://bitemates-git-master-sarvesh207.vercel.app/
 
 ## Usage
