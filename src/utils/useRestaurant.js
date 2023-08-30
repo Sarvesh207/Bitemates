@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useRestaurant = (id) => {
   const [restaurant, setRestaurant] = useState();
   
-  console.log(restaurant);
+
   
 
   useEffect(() => {
@@ -41,11 +41,11 @@ const useRestaurant = (id) => {
       };
 
       
-      console.log(modifiedData);
+      
       setRestaurant(modifiedData);
 
     } catch (error) {
-      console.log(error);
+      
     }
   }
 

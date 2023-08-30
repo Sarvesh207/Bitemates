@@ -19,7 +19,7 @@ function classNames(...classes) {
 export default function Navbar() {
 
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems.length);
+  
 
   return (
     <Disclosure as="nav" className="bg-sky-950 sticky z-50 top-0">

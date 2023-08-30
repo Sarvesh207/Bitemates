@@ -7,14 +7,13 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      //   state.items.push(action.payload);
-      console.log(action.payload.id);
+     
      
       const itemInCart = state.items.find(
        
         (item) => item?.id === action.payload.id
       );
-      console.log(itemInCart);
+     
       if (itemInCart) {
         itemInCart.inStock++;
       } else {
@@ -41,14 +40,15 @@ const cartSlice = createSlice({
       }
     },
     decrementQuantity: (state, action) => {
+    
       const item = state.items.find(
-        (item) => item?.card?.info.id === action.payload
+        (item) => item?.id === action.payload
       );
       if (item) {
-        if (item.card.info.inStock === 1) {
-          item.card.info.inStock = 1;
+        if (item.inStock === 1) {
+          item.inStock = 1;
         } else {
-          item.card.info.inStock--;
+          item.inStock--;
         }
       }
     },

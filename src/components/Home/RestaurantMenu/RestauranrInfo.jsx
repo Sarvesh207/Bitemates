@@ -3,7 +3,7 @@ import FormatPrice from "../../../Helper/FormatPrice.js";
 import { TbBike } from "react-icons/tb";
 
 const RestauranrInfo = (restaurant) => {
-    console.log(restaurant.name);
+    
   return (
     <div className="px-3">
         <h2 className="text-sky-950 font-bold text-2xl">{restaurant.name}</h2>

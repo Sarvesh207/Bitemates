@@ -25,7 +25,7 @@ const FoodItem = () => {
   };
 
   const handleIncrementQuantity = (item) => {
-    console.log(item?.inStock);
+    
     dispatch(incrementQuantity(item?.id));
   };
 
@@ -42,7 +42,7 @@ const FoodItem = () => {
   };
 
   const total = calculateTotalPrice();
-  console.log(total);
+ 
 
   return (
     <div className="w-full my-10 lg:w-auto sm:ml-10  ">
