@@ -13,7 +13,7 @@ const Search = () => {
   console.log(suggestionList?.cloudinaryId);
   const getSuggestions = async () => {
     const data = await fetch(
-      `https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/search/suggest?lat=12.9715987&lng=77.5945627&str=${query}&trackingId=undefined`
+      `https://erin-glamorous-earthworm.cyclic.app/api/proxy/swiggy/dapi/restaurants/search/suggest?lat=12.9715987&lng=77.5945627&str=${query}&trackingId=undefined`
     );
     const json = await data.json();
     console.log(json?.data?.suggestions);

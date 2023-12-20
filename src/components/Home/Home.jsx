@@ -45,9 +45,10 @@ const Home = () => {
 
   async function getRestaurrants() {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
+      "https://erin-glamorous-earthworm.cyclic.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
+    console.log(json)
 
     const restraunts =
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
