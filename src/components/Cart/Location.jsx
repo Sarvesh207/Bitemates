@@ -10,7 +10,7 @@ const Location = ({handleClick}) => {
 
   const getLocationsSuggestions = async () => {
     const res = await fetch(
-      `https://corsproxy.io/?https://www.swiggy.com/dapi/misc/place-autocomplete?input=${query}&types=`
+      `https://www.swiggy.com/dapi/misc/place-autocomplete?input=${query}&types=`
     );
     const data = await res.json();
 

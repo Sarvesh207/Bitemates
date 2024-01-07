@@ -48,14 +48,14 @@ const Home = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&sortBy=RELEVANCE&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(json?.data?.cards[4])
+    console.log(json?.data?.cards[5])
 
     const restraunts =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
     setAllRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     dispatch(setRestarunts(restraunts));
   }
